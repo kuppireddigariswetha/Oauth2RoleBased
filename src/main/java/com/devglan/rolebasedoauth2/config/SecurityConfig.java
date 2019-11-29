@@ -1,5 +1,7 @@
 package com.devglan.rolebasedoauth2.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,24 +20,27 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	private static final Logger log3 = LoggerFactory.getLogger(SecurityConfig.class);
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
+    	log3.info("Userdetailsservice = 30");
         return super.authenticationManagerBean();
     }
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+    	log3.info("Securityconfig = 36");
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(encoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	log3.info("inside configurr userdetsild dervice = 43");
         http
                 .csrf().disable()
                 .anonymous().disable()
@@ -45,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder encoder(){
+    	log3.info("Bcrypt algorithm =53 ");
         return new BCryptPasswordEncoder();
     }
 

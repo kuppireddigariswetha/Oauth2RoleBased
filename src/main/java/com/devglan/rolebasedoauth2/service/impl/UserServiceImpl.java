@@ -53,8 +53,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     private Set<GrantedAuthority> getAuthorities(User user) {
         Set<Role> roleByUserId = user.getRoles();
-        final Set<GrantedAuthority> authorities = roleByUserId.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().toString().toUpperCase())).collect(Collectors.toSet());
-        return authorities;
+     return roleByUserId.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().toString().toUpperCase())).collect(Collectors.toSet());
     }
 
     public List<UserDto> findAll() {
@@ -65,7 +64,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User findOne(long id) {
-        return userDao.findById(id).get();
+         return userDao.findById(id).get();
     }
 
     @Override

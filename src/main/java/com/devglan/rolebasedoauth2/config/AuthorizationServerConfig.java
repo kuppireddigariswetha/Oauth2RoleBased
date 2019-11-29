@@ -15,10 +15,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
 	private static final String CLIEN_ID = "devglan-client";
 	private static final String CLIENT_SECRET ="$2a$04$1VGGg98BkCSvSLs4RDSyUu8MrYf0jkY3dgCLAy8GHJe6QA4VAM/X2";
-	//devglan-secret
 	private static final String GRANT_TYPE_PASSWORD = "password";
 	private static final String AUTHORIZATION_CODE = "authorization_code";
 	private static final String REFRESH_TOKEN = "refresh_token";
@@ -31,7 +29,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;
 
 	@Bean
-	public JwtAccessTokenConverter accessTokenConverter() {
+	public JwtAccessTokenConverter accessTokenConverter() {		
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		converter.setSigningKey("as466gf");
 		return converter;
@@ -44,7 +42,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-
 		configurer
 				.inMemory()
 				.withClient(CLIEN_ID)
@@ -55,11 +52,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-
         endpoints
-                /*.pathMapping("/oauth/token", "/users/user/login")*/.tokenStore(tokenStore())
+                .pathMapping("/oauth/token", "/users/user/login").tokenStore(tokenStore())
 				.authenticationManager(authenticationManager)
 				.accessTokenConverter(accessTokenConverter());
+        
 	}
 
 
