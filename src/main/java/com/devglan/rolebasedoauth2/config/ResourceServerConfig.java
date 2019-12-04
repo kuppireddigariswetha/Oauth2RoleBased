@@ -17,13 +17,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-		log2.info(" Resource server config = 20 inside configure");
+		System.out.println("ResourceServerConfig = 20");
 		resources.resourceId(RESOURCE_ID).stateless(false);
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		log2.info("Resource server config = 26 inside congiure http");
+		System.out.println("ResourceServerConfig = 26");
         http.
                 anonymous().disable()
                 .authorizeRequests()

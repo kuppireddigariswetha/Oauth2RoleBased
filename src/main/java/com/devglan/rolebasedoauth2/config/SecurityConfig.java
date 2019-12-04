@@ -27,20 +27,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-    	log3.info("Userdetailsservice = 30");
+    	System.out.println("SecurityConfig = 30");
         return super.authenticationManagerBean();
     }
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-    	log3.info("Securityconfig = 36");
+    	System.out.println("SecurityConfig = 36");
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(encoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	log3.info("inside configurr userdetsild dervice = 43");
+    	System.out.println("SecurityConfig = 43");
         http
                 .csrf().disable()
                 .anonymous().disable()
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder encoder(){
-    	log3.info("Bcrypt algorithm =53 ");
+    	System.out.println("SecurityConfig = 53");
         return new BCryptPasswordEncoder();
     }
 

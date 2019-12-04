@@ -30,18 +30,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {		
+		System.out.println("AuthorizationServerConfig = 33");
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		converter.setSigningKey("as466gf");
+		System.out.println("Token==============="+converter);
 		return converter;
 	}
 
 	@Bean
 	public TokenStore tokenStore() {
+		System.out.println("AuthorizationServerConfig = 41");
 		return new JwtTokenStore(accessTokenConverter());
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
+		System.out.println("AuthorizationServerConfig = 48");
 		configurer
 				.inMemory()
 				.withClient(CLIEN_ID)
@@ -52,6 +56,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+		System.out.println("AuthorizationServerConfig = 59");
         endpoints
                 .pathMapping("/oauth/token", "/users/user/login").tokenStore(tokenStore())
 				.authenticationManager(authenticationManager)

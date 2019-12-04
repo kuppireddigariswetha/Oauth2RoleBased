@@ -2,11 +2,7 @@ package com.devglan.rolebasedoauth2;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -14,14 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.transaction.Transactional;
-
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.FilterChainProxy;
@@ -32,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.devglan.rolebasedoauth2.controller.UserController;
 import com.devglan.rolebasedoauth2.dto.UserDto;
 import com.devglan.rolebasedoauth2.service.UserService;
 
@@ -48,7 +43,9 @@ public class RoleBasedOauth2ApplicationTests {
 	
 		@Autowired
 	    private UserService userService;
-
+		
+		@InjectMocks
+		private UserController userController;
 		
 	    @Autowired
 	    private WebApplicationContext wac;
@@ -60,8 +57,8 @@ public class RoleBasedOauth2ApplicationTests {
 	 
 	    @Before
 	    public void setup() {
-	        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
-	          .addFilter(springSecurityFilterChain).build();
+	    	 MockitoAnnotations.initMocks(this);
+	         this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 	    }
 	    
 	    private static final String URL_PREFIX = "http://localhost:9099";
@@ -92,9 +89,9 @@ public class RoleBasedOauth2ApplicationTests {
 	    }
 
 	    @Test
-    public void givenToken_whenPostGetSecureRequest_thenOk() throws Exception {
+        public void givenToken_whenPostGetSecureRequest_thenOk() throws Exception {
 	    	
-	    	UserDto userDto=new UserDto();
+	    	 UserDto userDto=new UserDto();
 	    	 List<String> role=new ArrayList<String>();
 	    	 role.add("USER");
 		     userDto.setId(2);
@@ -106,12 +103,18 @@ public class RoleBasedOauth2ApplicationTests {
 		     userDto.setRole(role);	     
 		     
 		     UserDto u= userService.save(userDto);
-		     
-			 	assertEquals("swetha",u.getFirstName());
-			 	assertEquals("swetha@gmail.com",u.getEmail());
-		 	
+			 assertEquals("swetha",u.getFirstName());
+			 assertEquals("swetha@gmail.com",u.getEmail());
 
-
-	    }	     
+	    }	
+	    
+	    @Test
+	    public void testCreateSignupFormInvalidUser() throws Exception {
+	       // this.mockMvc.perform(get(URL_PREFIX + "/users")).andExpect(status().isOk());
+	    	 mockMvc.perform(get("/users")
+	    		      .header("Authorization", "Bearer " + tokenValue)
+	    		      .param("id", "1"))
+	    	          .andExpect(status().isOk());
+	    }
 }
 

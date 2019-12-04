@@ -6,12 +6,12 @@ public class ApiResponse {
 	
 	private int status;
 	private String message;
-	private Object result;
-
+	private Object payload;
+	
 	public ApiResponse(HttpStatus status, String message, Object result){
 	    this.status = status.value();
 	    this.message = message;
-	    this.result = result;
+	    this.payload = result;
     }
 
     public ApiResponse(HttpStatus status, String message){
@@ -35,12 +35,12 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public Object getResult() {
-        return result;
+    public Object getPayload() {
+        return payload;
     }
 
-    public void setResult(Object result) {
-        this.result = result;
+    public void setPayload(Object result) {
+        this.payload = result;
     }
 
     @Override
