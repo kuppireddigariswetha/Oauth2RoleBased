@@ -53,30 +53,38 @@ public class UserController {
     	
     }
     
-    @Secured({ROLE_SUPERADMIN})
+    @Secured({ROLE_SUPERADMIN,ROLE_ADMIN})
     @GetMapping
     public ApiResponse listUser(){   	
     	   return new ApiResponse(HttpStatus.OK, SUCCESS, userService.findAll());
     }
 
-    @Secured({ROLE_ADMIN})
+    @Secured({ROLE_SUPERADMIN,ROLE_ADMIN})
     @PostMapping
     public ApiResponse create(@RequestBody UserDto user){
            return new ApiResponse(HttpStatus.OK, SUCCESS, userService.save(user));
     }
 
-    @Secured({ROLE_ADMIN, ROLE_USER})
+    @Secured({ROLE_SUPERADMIN,ROLE_ADMIN, ROLE_USER})
     @GetMapping(value = "/{id}")
     public ApiResponse getUser(@PathVariable long id){
              return new ApiResponse(HttpStatus.OK, SUCCESS, userService.findOne(id));
     }
 
-    @Secured({ROLE_ADMIN})
+    @Secured({ROLE_SUPERADMIN,ROLE_ADMIN})
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable(value = "id") Long id){
             userService.delete(id);
     }
 
 
+    @Secured({ROLE_SUPERADMIN,ROLE_ADMIN,ROLE_USER})
+    @PutMapping(value = "/{id}")
+    public  ApiResponse updateUser(@PathVariable long id, @RequestBody UserDto user) {   	
+    	 userService.delete(id);
+    	 user.setId(id);
+    	 return new ApiResponse(HttpStatus.OK, "User Updated Successfully", userService.save(user));	
+    	
+    }
 
 }

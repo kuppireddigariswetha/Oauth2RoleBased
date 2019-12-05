@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
-@EnableJpaRepositories(basePackages = "com.devglan.rolebasedoauth2")
+@EnableJpaRepositories(basePackages = "com.tetrasoft.rolebasedoauth2")
 @PropertySource("persistent-object.properties")
 @EnableTransactionManagement
 public class Oauth2JpaConfig {

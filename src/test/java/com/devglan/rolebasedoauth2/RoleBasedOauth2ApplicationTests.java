@@ -17,14 +17,12 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.tetrasoft.rolebasedoauth2.RoleBasedOauth2Application;
 import com.tetrasoft.rolebasedoauth2.controller.UserController;
@@ -48,20 +46,7 @@ public class RoleBasedOauth2ApplicationTests {
 		@InjectMocks
 		private UserController userController;
 		
-	    @Autowired
-	    private WebApplicationContext wac;
 	 
-	    @Autowired
-	    private FilterChainProxy springSecurityFilterChain;
-	 
-	    private MockMvc mockMvc;
-	 
-	    @Before
-	    public void setup() {
-	    	 MockitoAnnotations.initMocks(this);
-	         this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
-	    }
-	    
 	    private static final String URL_PREFIX = "http://localhost:9099";
 	    private String tokenValue = null;
 
