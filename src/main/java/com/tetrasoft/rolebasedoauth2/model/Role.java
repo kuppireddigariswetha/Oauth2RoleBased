@@ -1,4 +1,4 @@
-package com.devglan.rolebasedoauth2.model;
+package com.tetrasoft.rolebasedoauth2.model;
 
 import javax.persistence.*;
 

@@ -26,9 +26,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.devglan.rolebasedoauth2.controller.UserController;
-import com.devglan.rolebasedoauth2.dto.UserDto;
-import com.devglan.rolebasedoauth2.service.UserService;
+import com.tetrasoft.rolebasedoauth2.RoleBasedOauth2Application;
+import com.tetrasoft.rolebasedoauth2.controller.UserController;
+import com.tetrasoft.rolebasedoauth2.dto.UserDto;
+import com.tetrasoft.rolebasedoauth2.service.UserService;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -107,14 +108,6 @@ public class RoleBasedOauth2ApplicationTests {
 			 assertEquals("swetha@gmail.com",u.getEmail());
 
 	    }	
-	    
-	    @Test
-	    public void testCreateSignupFormInvalidUser() throws Exception {
-	       // this.mockMvc.perform(get(URL_PREFIX + "/users")).andExpect(status().isOk());
-	    	 mockMvc.perform(get("/users")
-	    		      .header("Authorization", "Bearer " + tokenValue)
-	    		      .param("id", "1"))
-	    	          .andExpect(status().isOk());
-	    }
+	    	   
 }
 

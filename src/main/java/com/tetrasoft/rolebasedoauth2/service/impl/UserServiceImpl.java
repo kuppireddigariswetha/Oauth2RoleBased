@@ -1,12 +1,13 @@
-package com.devglan.rolebasedoauth2.service.impl;
+package com.tetrasoft.rolebasedoauth2.service.impl;
 
-import com.devglan.rolebasedoauth2.dao.RoleDao;
-import com.devglan.rolebasedoauth2.dao.UserDao;
-import com.devglan.rolebasedoauth2.dto.UserDto;
-import com.devglan.rolebasedoauth2.model.Role;
-import com.devglan.rolebasedoauth2.model.RoleType;
-import com.devglan.rolebasedoauth2.model.User;
-import com.devglan.rolebasedoauth2.service.UserService;
+import com.tetrasoft.rolebasedoauth2.dao.RoleDao;
+import com.tetrasoft.rolebasedoauth2.dao.UserDao;
+import com.tetrasoft.rolebasedoauth2.dto.UserDto;
+import com.tetrasoft.rolebasedoauth2.model.Role;
+import com.tetrasoft.rolebasedoauth2.model.RoleType;
+import com.tetrasoft.rolebasedoauth2.model.User;
+import com.tetrasoft.rolebasedoauth2.service.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

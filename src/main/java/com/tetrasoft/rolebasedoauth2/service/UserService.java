@@ -1,7 +1,7 @@
-package com.devglan.rolebasedoauth2.service;
+package com.tetrasoft.rolebasedoauth2.service;
 
-import com.devglan.rolebasedoauth2.dto.UserDto;
-import com.devglan.rolebasedoauth2.model.User;
+import com.tetrasoft.rolebasedoauth2.dto.UserDto;
+import com.tetrasoft.rolebasedoauth2.model.User;
 
 import java.util.List;
 

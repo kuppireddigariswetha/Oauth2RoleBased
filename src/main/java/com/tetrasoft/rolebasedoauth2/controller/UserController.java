@@ -1,9 +1,9 @@
-package com.devglan.rolebasedoauth2.controller;
+package com.tetrasoft.rolebasedoauth2.controller;
 
-import com.devglan.rolebasedoauth2.config.AuthorizationServerConfig;
-import com.devglan.rolebasedoauth2.dto.ApiResponse;
-import com.devglan.rolebasedoauth2.dto.UserDto;
-import com.devglan.rolebasedoauth2.service.UserService;
+import com.tetrasoft.rolebasedoauth2.config.AuthorizationServerConfig;
+import com.tetrasoft.rolebasedoauth2.dto.ApiResponse;
+import com.tetrasoft.rolebasedoauth2.dto.UserDto;
+import com.tetrasoft.rolebasedoauth2.service.UserService;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -27,7 +27,8 @@ public class UserController {
     public static final String SUCCESS = "success";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String ROLE_USER = "ROLE_USER";
-
+    public static final String ROLE_SUPERADMIN = "ROLE_SUPERADMIN";
+    
     @Autowired
     private UserService userService;
     		
@@ -52,7 +53,7 @@ public class UserController {
     	
     }
     
-    @Secured({ROLE_ADMIN})
+    @Secured({ROLE_SUPERADMIN})
     @GetMapping
     public ApiResponse listUser(){   	
     	   return new ApiResponse(HttpStatus.OK, SUCCESS, userService.findAll());

@@ -1,4 +1,4 @@
-package com.devglan.rolebasedoauth2.config;
+package com.tetrasoft.rolebasedoauth2.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

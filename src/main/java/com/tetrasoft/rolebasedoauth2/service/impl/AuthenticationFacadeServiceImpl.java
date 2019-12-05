@@ -1,9 +1,10 @@
-package com.devglan.rolebasedoauth2.service.impl;
+package com.tetrasoft.rolebasedoauth2.service.impl;
 
-import com.devglan.rolebasedoauth2.service.AuthenticationFacadeService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import com.tetrasoft.rolebasedoauth2.service.AuthenticationFacadeService;
 
 @Component
 public class AuthenticationFacadeServiceImpl implements AuthenticationFacadeService {

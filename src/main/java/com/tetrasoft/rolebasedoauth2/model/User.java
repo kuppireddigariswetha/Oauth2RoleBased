@@ -1,8 +1,9 @@
-package com.devglan.rolebasedoauth2.model;
-
-import com.devglan.rolebasedoauth2.dto.UserDto;
+package com.tetrasoft.rolebasedoauth2.model;
 
 import javax.persistence.*;
+
+import com.tetrasoft.rolebasedoauth2.dto.UserDto;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 

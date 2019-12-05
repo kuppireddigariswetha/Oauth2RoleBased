@@ -1,4 +1,4 @@
-package com.devglan.rolebasedoauth2.dto;
+package com.tetrasoft.rolebasedoauth2.dto;
 
 import java.util.List;
 

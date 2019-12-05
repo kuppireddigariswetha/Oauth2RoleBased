@@ -1,4 +1,4 @@
-package com.devglan.rolebasedoauth2.config;
+package com.tetrasoft.rolebasedoauth2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

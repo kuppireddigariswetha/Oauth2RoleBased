@@ -1,4 +1,4 @@
-package com.devglan.rolebasedoauth2.service;
+package com.tetrasoft.rolebasedoauth2.service;
 
 import org.springframework.security.core.Authentication;
 
